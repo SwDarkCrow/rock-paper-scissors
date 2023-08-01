@@ -18,19 +18,44 @@ function roundWinner(playerSelection, computerSelection){
   playerSelection = playerSelection.toLowerCase();
   let choices = ['rock', 'paper', 'scissors'];
   if (playerSelection === computerSelection){
-    return 'Tie!'
+    return 'Tie!';
   }
 
   for (let i = 0; i <= 3; i++) {
     if (playerSelection === choices[i-1]){
       if (computerSelection === choices[i-3]){
-        return `You Lose! ${computerSelection} beats ${playerSelection}`
+        return `You Lose! ${computerSelection} beats ${playerSelection}`;
       }
-      return `You Win! ${playerSelection} beats ${computerSelection}`
+      return `You Win! ${playerSelection} beats ${computerSelection}`;
     }
   }
+}
 
-  if (playerSelection === 'rock'){
-    if computerSelection
+function game(){
+  let playerChoice;
+  let computerChoice;
+  let score = [0, 0];
+  for (let i = 0; i <= 4;) {
+    playerChoice = prompt('Rock, paper, or scissors?');
+    computerChoice = getComputerChoice();
+    console.log(roundWinner(playerChoice, computerChoice));
+    if (roundWinner(playerChoice, computerChoice) > 'You Lose!'){
+      score[0] += 1;
+      i++;
+    } else if (roundWinner(playerChoice, computerChoice) === 'Tie!'){
+      //pass
+    } else {
+      score[1] += 1;
+      i++;
+    }
+    if (score[0] === 3){
+      console.log('You are undefeatable!');
+      break;
+    } else if (score[1] === 3){
+      console.log('You were defeated')
+      break;
+    }
   }
 }
+
+game();
