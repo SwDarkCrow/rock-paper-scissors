@@ -15,15 +15,14 @@ function getComputerChoice(){
 }
 
 function roundWinner(playerSelection, computerSelection){
-  playerSelection = playerSelection.toLowerCase();
   let choices = ['rock', 'paper', 'scissors'];
   if (playerSelection === computerSelection){
     return 'Tie!';
   }
 
   for (let i = 0; i <= 3; i++) {
-    if (playerSelection === choices[i-1]){
-      if (computerSelection === choices[i-3]){
+    if (playerSelection === choices[i - 1]){
+      if (computerSelection === choices[choices.length + i - 3]){
         return `You Lose! ${computerSelection} beats ${playerSelection}`;
       }
       return `You Win! ${playerSelection} beats ${computerSelection}`;
@@ -36,10 +35,10 @@ function game(){
   let computerChoice;
   let score = [0, 0];
   for (let i = 0; i <= 4;) {
-    playerChoice = prompt('Rock, paper, or scissors?');
+    playerChoice = prompt('Rock, paper, or scissors?').toLowerCase();
     computerChoice = getComputerChoice();
     console.log(roundWinner(playerChoice, computerChoice));
-    if (roundWinner(playerChoice, computerChoice) > 'You Lose!'){
+    if (roundWinner(playerChoice, computerChoice) > `You Lose! ${computerChoice} beats ${playerChoice}`){
       score[0] += 1;
       i++;
     } else if (roundWinner(playerChoice, computerChoice) === 'Tie!'){
