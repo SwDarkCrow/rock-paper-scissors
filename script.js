@@ -16,8 +16,9 @@ function getComputerChoice(){
 
 function roundWinner(event){
   let winnerDiv = document.querySelector("#winner");
+  winnerDiv.textContent = '';
   let choices = ['rock', 'paper', 'scissors'];
-  let playerChoice = event.target.id;
+  let playerChoice = event.target.getAttribute('data-value');
   let computerChoice = getComputerChoice();
   if (playerChoice === computerChoice){
     winnerDiv.textContent = 'Tie!';
@@ -26,7 +27,7 @@ function roundWinner(event){
 
   for (let i = 0; i < 3; i++) {
     if (playerChoice === choices[i]){
-      if (computerChoice === choices[choices.length + i - 2]){
+      if (computerChoice === choices.slice(i - 2)[0]){
         winnerDiv.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
         break;
       }
@@ -36,11 +37,14 @@ function roundWinner(event){
   }
 }
 
-let buttons = document.querySelectorAll("button");
+let images = document.querySelectorAll(".image");
+let buttons = document.querySelectorAll("img");
 for(const button of buttons){
   button.addEventListener("click", roundWinner)
 }
-
+for(const image of images){
+  image.addEventListener("click", roundWinner)
+}
 
 function game(event){
   let playerChoice = event.id;
