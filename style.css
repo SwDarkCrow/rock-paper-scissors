@@ -13,15 +13,22 @@ body {
   flex-direction: column;
   font-family: sans-serif;
   height: 97vh;
+  text-align: center;
 }
 
-.title, .game > div > div {
-  text-align: center;
+.title {
   font-size: 3rem;
+  font-weight: bold;
+}
+
+.game > div > div {
+  font-size: 2rem;
+  margin-top: 20px;
 }
 
 .title, .footer, #winner {
   flex-grow: 0;
+  margin: 15px;
 }
 
 .game, .player, .computer {
@@ -35,7 +42,7 @@ body {
   gap: 20px;
 }
 
-.options, .computer > .image {
+div div.options, .computer > .image {
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -50,7 +57,7 @@ body {
   flex: 0 1 200px;
   min-height: 200px;
   border: White solid 5px;
-  border-radius: 30px;
+  border-radius: 35px;
   height: auto;
   aspect-ratio: 1;
   display: flex;
@@ -58,8 +65,13 @@ body {
   align-items: center;
 }
 
+.player .image {
+  cursor: pointer;
+}
+
 img {
-  max-height: 170px;
+  max-width: 100px;
+  flex-shrink: 1;
   aspect-ratio: initial;
 }
 
@@ -69,8 +81,8 @@ img {
 
 .divisor {
   border: White solid 5px;
-  border-radius: 30px;
-  min-height: 70%;
+  border-radius: 35px;
+  min-height: 90%;
 }
 
 .footer {
@@ -80,4 +92,9 @@ img {
 a {
   color: #999;
   font-style: italic;
+}
+
+#winner {
+  font-size: 2rem;
+  min-height: 2.75rem;
 }
