@@ -1,0 +1,10 @@
+:root {
+  --background: #0b0b0f;
+}
+
+body {
+  background-color: var(--background);
+  color: White;
+  display: flex;
+  flex-direction: column;
+}
