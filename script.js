@@ -15,21 +15,22 @@ function getComputerChoice(){
 }
 
 function roundWinner(event){
+  let winnerDiv = document.querySelector("#winner");
   let choices = ['rock', 'paper', 'scissors'];
   let playerChoice = event.target.id;
   let computerChoice = getComputerChoice();
   if (playerChoice === computerChoice){
-    console.log('Tie!');
+    winnerDiv.textContent = 'Tie!';
     return;
   }
 
-  for (let i = 0; i <= 3; i++) {
-    if (playerChoice === choices[i - 1]){
-      if (computerChoice === choices[choices.length + i - 3]){
-        console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
+  for (let i = 0; i < 3; i++) {
+    if (playerChoice === choices[i]){
+      if (computerChoice === choices[choices.length + i - 2]){
+        winnerDiv.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
         break;
       }
-      console.log(`You Win! ${playerChoice} beats ${computerChoice}`);
+      winnerDiv.textContent = `You Win! ${playerChoice} beats ${computerChoice}`;
       break;
     }
   }
@@ -39,6 +40,7 @@ let buttons = document.querySelectorAll("button");
 for(const button of buttons){
   button.addEventListener("click", roundWinner)
 }
+
 
 function game(event){
   let playerChoice = event.id;
