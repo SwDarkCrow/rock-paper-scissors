@@ -14,29 +14,38 @@ function getComputerChoice(){
   return choice;
 }
 
-function roundWinner(playerSelection, computerSelection){
+function roundWinner(event){
   let choices = ['rock', 'paper', 'scissors'];
-  if (playerSelection === computerSelection){
-    return 'Tie!';
+  let playerChoice = event.target.id;
+  let computerChoice = getComputerChoice();
+  if (playerChoice === computerChoice){
+    console.log('Tie!');
   }
 
   for (let i = 0; i <= 3; i++) {
-    if (playerSelection === choices[i - 1]){
-      if (computerSelection === choices[choices.length + i - 3]){
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    if (playerChoice === choices[i - 1]){
+      if (computerChoice === choices[choices.length + i - 3]){
+        console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
+        break;
       }
-      return `You Win! ${playerSelection} beats ${computerSelection}`;
+      console.log(`You Win! ${playerChoice} beats ${computerChoice}`);
+      break;
     }
   }
 }
 
-function game(){
-  let playerChoice;
+let buttons = document.querySelectorAll("button");
+for(const button of buttons){
+  button.addEventListener("click", roundWinner)
+}
+
+function game(event){
+  let playerChoice = event.id;
   let computerChoice;
   let score = [0, 0];
   //for (let i = 0; i <= 4;) 
-  while(true)
-  {
+  //while(true)
+  //{
     playerChoice = prompt('Rock, paper, or scissors?').toLowerCase();
     computerChoice = getComputerChoice();
     console.log(roundWinner(playerChoice, computerChoice));
@@ -56,7 +65,7 @@ function game(){
       //console.log('You were defeated')
       //break;
     //}
-  }
+  //}
 }
 
 //game();
