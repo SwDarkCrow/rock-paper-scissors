@@ -20,6 +20,7 @@ function roundWinner(event){
   let computerChoice = getComputerChoice();
   if (playerChoice === computerChoice){
     console.log('Tie!');
+    return;
   }
 
   for (let i = 0; i <= 3; i++) {
