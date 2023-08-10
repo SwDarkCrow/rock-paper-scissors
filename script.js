@@ -1,5 +1,15 @@
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
 function getComputerChoice(){
   let imageDiv = document.querySelector(".computer .image img");
+  imageDiv.setAttribute('src', "");
   let choice = Math.floor(Math.random() * 3) + 1;
   switch (choice){
     case 1:
@@ -11,10 +21,14 @@ function getComputerChoice(){
     case 3:
       choice = 'scissors';
       break;
-  }
+    }
+  sleep(100);
   imageDiv.setAttribute('src', `./icons/${choice}.png`);
+  sleep(200);
   return choice;
 }
+
+let score = [0, 0];
 
 function roundWinner(event){
   let winnerDiv = document.querySelector("#winner");
@@ -24,6 +38,7 @@ function roundWinner(event){
   let computerChoice = getComputerChoice();
   if (playerChoice === computerChoice){
     winnerDiv.textContent = 'Tie!';
+    event.stopPropagation();
     return;
   }
 
@@ -31,12 +46,22 @@ function roundWinner(event){
     if (playerChoice === choices[i]){
       if (computerChoice === choices.slice(i - 2)[0]){
         winnerDiv.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
+        score[1] += 1;
         break;
       }
       winnerDiv.textContent = `You Win! ${playerChoice} beats ${computerChoice}`;
+      score[0] += 1;
       break;
     }
   }
+  if (score[0] === 5){
+    winnerDiv.textContent = "You are godly! You won 5 rounds!";
+    score = [0, 0];
+  } else if (score[1] === 5){
+    winnerDiv.textContent = "What a shame. You lost 5 times.";
+    score = [0, 0];
+  }
+  event.stopPropagation();
 }
 
 let images = document.querySelectorAll(".image");
@@ -47,34 +72,3 @@ for(const button of buttons){
 for(const image of images){
   image.addEventListener("click", roundWinner)
 }
-
-function game(event){
-  let playerChoice = event.id;
-  let computerChoice;
-  let score = [0, 0];
-  //for (let i = 0; i <= 4;) 
-  //while(true)
-  //{
-    playerChoice = prompt('Rock, paper, or scissors?').toLowerCase();
-    computerChoice = getComputerChoice();
-    console.log(roundWinner(playerChoice, computerChoice));
-    if (roundWinner(playerChoice, computerChoice) > `You Lose! ${computerChoice} beats ${playerChoice}`){
-      score[0] += 1;
-      //i++;
-    } else if (roundWinner(playerChoice, computerChoice) === 'Tie!'){
-      //pass
-    } else {
-      score[1] += 1;
-      //i++;
-    }
-    //if (score[0] === 3){
-      //console.log('You are undefeatable!');
-      //break;
-    //} else if (score[1] === 3){
-      //console.log('You were defeated')
-      //break;
-    //}
-  //}
-}
-
-//game();
