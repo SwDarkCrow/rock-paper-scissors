@@ -1,4 +1,5 @@
 function getComputerChoice(){
+  let imageDiv = document.querySelector(".computer .image img");
   let choice = Math.floor(Math.random() * 3) + 1;
   switch (choice){
     case 1:
@@ -11,6 +12,7 @@ function getComputerChoice(){
       choice = 'scissors';
       break;
   }
+  imageDiv.setAttribute('src', `./icons/${choice}.png`);
   return choice;
 }
 
