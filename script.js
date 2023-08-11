@@ -57,7 +57,11 @@ function roundWinner(event){
 }
 
 let images = document.querySelectorAll(".image");
+images = Array.from(images);
+images.pop();
 let buttons = document.querySelectorAll("img");
+buttons = Array.from(buttons);
+buttons.pop();
 for(const button of buttons){
   button.addEventListener("click", roundWinner)
 }
