@@ -1,15 +1,6 @@
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
-
 function getComputerChoice(){
   let imageDiv = document.querySelector(".computer .image img");
-  imageDiv.setAttribute('src', "");
+  imageDiv.style.display = "none";
   let choice = Math.floor(Math.random() * 3) + 1;
   switch (choice){
     case 1:
@@ -22,9 +13,8 @@ function getComputerChoice(){
       choice = 'scissors';
       break;
     }
-  sleep(100);
   imageDiv.setAttribute('src', `./icons/${choice}.png`);
-  sleep(200);
+  setTimeout(() => imageDiv.style.display = "block", 200);
   return choice;
 }
 
@@ -38,7 +28,7 @@ function roundWinner(event){
   let playerChoice = event.target.getAttribute('data-value');
   let computerChoice = getComputerChoice();
   if (playerChoice === computerChoice){
-    winnerDiv.textContent = 'Tie!';
+    setTimeout(() => winnerDiv.textContent = 'Tie!', 400);
     event.stopPropagation();
     return;
   }
@@ -46,23 +36,23 @@ function roundWinner(event){
   for (let i = 0; i < 3; i++) {
     if (playerChoice === choices[i]){
       if (computerChoice === choices.slice(i - 2)[0]){
-        winnerDiv.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
+        setTimeout(() => winnerDiv.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`, 400);
         score[1] += 1;
         break;
       }
-      winnerDiv.textContent = `You Win! ${playerChoice} beats ${computerChoice}`;
+      setTimeout(() => winnerDiv.textContent = `You Win! ${playerChoice} beats ${computerChoice}`, 400);
       score[0] += 1;
       break;
     }
   }
   if (score[0] === 5){
-    winnerDiv.textContent = "You are godly! You won 5 rounds!";
+    setTimeout(() => winnerDiv.textContent = "You are godly! You won 5 rounds!", 400);
     score = [0, 0];
   } else if (score[1] === 5){
-    winnerDiv.textContent = "What a shame. You lost 5 times.";
+    setTimeout(() => winnerDiv.textContent = "What a shame. You lost 5 times.", 400);
     score = [0, 0];
   }
-  scoreDiv.textContent = `${score[0]} | ${score[1]}`
+  setTimeout(() => scoreDiv.textContent = `${score[0]} | ${score[1]}`, 400);
   event.stopPropagation();
 }
 
