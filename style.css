@@ -98,3 +98,8 @@ a {
   font-size: 2rem;
   min-height: 2.75rem;
 }
+
+#score {
+  font-size: 1.75rem;
+  min-height: 2.5rem;
+}

@@ -31,6 +31,7 @@ function getComputerChoice(){
 let score = [0, 0];
 
 function roundWinner(event){
+  let scoreDiv = document.querySelector("#score");
   let winnerDiv = document.querySelector("#winner");
   winnerDiv.textContent = '';
   let choices = ['rock', 'paper', 'scissors'];
@@ -61,6 +62,7 @@ function roundWinner(event){
     winnerDiv.textContent = "What a shame. You lost 5 times.";
     score = [0, 0];
   }
+  scoreDiv.textContent = `${score[0]} | ${score[1]}`
   event.stopPropagation();
 }
 
