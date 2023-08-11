@@ -97,3 +97,12 @@ a {
   font-size: 1.75rem;
   min-height: 2.5rem;
 }
+
+.options .image, .options > img {
+  transition: 0.2s;
+}
+
+.options .image:hover, .options > img:hover {
+  scale: 1.1;
+  box-shadow: 0 0 10px White;
+}
