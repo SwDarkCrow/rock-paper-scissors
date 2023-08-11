@@ -79,12 +79,6 @@ img {
   flex-shrink: 1;
 }
 
-.divisor {
-  border: White solid 5px;
-  border-radius: 35px;
-  min-height: 90%;
-}
-
 .footer {
   text-align: center;
 }
